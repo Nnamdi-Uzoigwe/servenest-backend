@@ -9,6 +9,7 @@ import {
 } from "@/constants/enums";
 
 export interface ITechnicianDocument {
+  _id?: Types.ObjectId;
   type: DocumentType;
   name: string;
   url: string;

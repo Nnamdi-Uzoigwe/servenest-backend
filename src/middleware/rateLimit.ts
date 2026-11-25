@@ -20,3 +20,12 @@ export const codeLimiter = rateLimit({
   legacyHeaders: false,
   message,
 });
+
+// Upload signatures
+export const uploadLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: env.isProd ? 60 : 500,
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
+  message,
+});

@@ -2,7 +2,10 @@ import { Router } from "express";
 import mongoose from "mongoose";
 import { env } from "@/config/env";
 import authRoutes from "@/modules/auth/auth.routes";
+import userSelfRoutes from "@/modules/users/user.self.routes";
+import technicianSelfRoutes from "@/modules/technicians/technician.self.routes";
 import technicianAdminRoutes from "@/modules/technicians/technician.admin.routes";
+import uploadRoutes from "@/modules/uploads/uploads.routes";
 import auditRoutes from "@/modules/audit/audit.routes";
 import devChecks from "@/routes/devChecks";
 
@@ -19,6 +22,9 @@ router.get("/health", (_req, res) => {
 });
 
 router.use("/auth", authRoutes);
+router.use("/users", userSelfRoutes);
+router.use("/technicians", technicianSelfRoutes);
+router.use("/uploads", uploadRoutes);
 router.use("/admin/technicians", technicianAdminRoutes);
 router.use("/admin/audit-logs", auditRoutes);
 
