@@ -89,4 +89,5 @@ const userSchema = new Schema<IUser>(
   }
 );
 
+userSchema.index({ "refreshTokens.tokenHash": 1 });
 export const User = model<IUser>("User", userSchema);
