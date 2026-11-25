@@ -7,6 +7,8 @@ declare global {
         userId: string;
         role: Role;
         isEmailVerified: boolean;
+        // Set by requireApprovedTechnician
+        technicianProfileId?: string;
       };
     }
   }
