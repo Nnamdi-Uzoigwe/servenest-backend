@@ -27,7 +27,7 @@ export async function listTechnicians(q: ListTechniciansQuery) {
 
   const [items, total] = await Promise.all([
     TechnicianProfile.find(filter)
-      .sort({ createdAt: -1 })
+      .sort(q.sort === "oldest" ? { createdAt: 1, _id: 1 } : { createdAt: -1, _id: -1 })
       .skip((q.page - 1) * q.limit)
       .limit(q.limit)
       .populate("user", USER_FIELDS)
