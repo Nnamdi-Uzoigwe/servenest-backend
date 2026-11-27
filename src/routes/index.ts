@@ -5,6 +5,8 @@ import authRoutes from "@/modules/auth/auth.routes";
 import userSelfRoutes from "@/modules/users/user.self.routes";
 import technicianSelfRoutes from "@/modules/technicians/technician.self.routes";
 import technicianAdminRoutes from "@/modules/technicians/technician.admin.routes";
+import catalogPublicRoutes from "@/modules/catalog/catalog.public.routes";
+import catalogAdminRoutes from "@/modules/catalog/catalog.admin.routes";
 import uploadRoutes from "@/modules/uploads/uploads.routes";
 import auditRoutes from "@/modules/audit/audit.routes";
 import devChecks from "@/routes/devChecks";
@@ -24,8 +26,10 @@ router.get("/health", (_req, res) => {
 router.use("/auth", authRoutes);
 router.use("/users", userSelfRoutes);
 router.use("/technicians", technicianSelfRoutes);
+router.use("/catalog", catalogPublicRoutes);
 router.use("/uploads", uploadRoutes);
 router.use("/admin/technicians", technicianAdminRoutes);
+router.use("/admin/catalog", catalogAdminRoutes);
 router.use("/admin/audit-logs", auditRoutes);
 
 // Temporary guard checks, never exposed in production

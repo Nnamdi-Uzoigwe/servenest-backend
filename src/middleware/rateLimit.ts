@@ -29,3 +29,12 @@ export const uploadLimiter = rateLimit({
   legacyHeaders: false,
   message,
 });
+
+// Public catalogue reads. Phones on one mobile network share an address, so this is generous.
+export const publicLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: env.isProd ? 600 : 5000,
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
+  message,
+});

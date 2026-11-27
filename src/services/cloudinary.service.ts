@@ -18,11 +18,12 @@ if (configured) {
   });
 }
 
-export type UploadPurpose = "avatar" | "technician_document";
+export type UploadPurpose = "avatar" | "technician_document" | "service_image";
 
 const FOLDERS: Record<UploadPurpose, string> = {
   avatar: "servenest/avatars",
   technician_document: "servenest/technician-documents",
+  service_image: "servenest/service-images",
 };
 
 const ALLOWED_FORMATS = "jpg,jpeg,png,webp,heic";
@@ -34,7 +35,7 @@ function assertConfigured() {
 export const folderFor = (purpose: UploadPurpose, userId: string) =>
   `${FOLDERS[purpose]}/${userId}`;
 
-// The phone uploads straight to Cloudinary with these values
+// The phone or browser uploads straight to Cloudinary with these values
 export function signUpload(purpose: UploadPurpose, userId: string) {
   assertConfigured();
 

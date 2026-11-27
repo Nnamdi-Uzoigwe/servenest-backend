@@ -9,7 +9,7 @@ import { signUpload } from "@/services/cloudinary.service";
 const router = Router();
 
 const signSchema = z.object({
-  purpose: z.enum(["avatar", "technician_document"]),
+  purpose: z.enum(["avatar", "technician_document", "service_image"]),
 });
 
 router.post("/sign", authenticate, uploadLimiter, validate(signSchema), (req, res) => {
@@ -17,7 +17,11 @@ router.post("/sign", authenticate, uploadLimiter, validate(signSchema), (req, re
   const { userId, role } = req.auth!;
 
   const allowed =
-    purpose === "avatar" ? role === "customer" || role === "technician" : role === "technician";
+    purpose === "avatar"
+      ? role === "customer" || role === "technician"
+      : purpose === "technician_document"
+        ? role === "technician"
+        : role === "admin";
   if (!allowed) throw ApiError.forbidden("You do not have permission to upload this");
 
   res.json({ success: true, data: signUpload(purpose, userId) });
