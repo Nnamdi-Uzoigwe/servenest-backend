@@ -18,12 +18,13 @@ if (configured) {
   });
 }
 
-export type UploadPurpose = "avatar" | "technician_document" | "service_image";
+export type UploadPurpose = "avatar" | "technician_document" | "service_image" | "booking_photo";
 
 const FOLDERS: Record<UploadPurpose, string> = {
   avatar: "servenest/avatars",
   technician_document: "servenest/technician-documents",
   service_image: "servenest/service-images",
+  booking_photo: "servenest/booking-photos",
 };
 
 const ALLOWED_FORMATS = "jpg,jpeg,png,webp,heic";
